@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Korean search engines
+User-agent: Yeti
+Allow: /
+
+User-agent: Daumoa
+Allow: /

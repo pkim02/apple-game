@@ -1,0 +1,359 @@
+/* Apple Game - Custom Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Game Grid */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 3px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+/* Individual Apple Cell */
+.apple-cell {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(145deg, #ef5350, #c62828);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+}
+
+.apple-cell::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    width: 8px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+.apple-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Selected Apple */
+.apple-cell.selected {
+    background: linear-gradient(145deg, #66bb6a, #388e3c);
+    transform: scale(1.1);
+    box-shadow: 
+        0 0 15px rgba(76, 175, 80, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+/* Empty Cell (apple removed) */
+.apple-cell.empty {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    pointer-events: none;
+    transition: none !important;
+    visibility: hidden;
+}
+
+/* Pop Animation */
+.apple-cell.popping {
+    animation: popAnimation 0.4s ease-out forwards !important;
+    z-index: 10;
+    transition: none !important;
+    pointer-events: none;
+}
+
+@keyframes popAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        background: linear-gradient(145deg, #ef5350, #c62828);
+    }
+    30% {
+        transform: scale(1.4);
+        opacity: 1;
+        background: linear-gradient(145deg, #ffeb3b, #ffc107);
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+        background: linear-gradient(145deg, #ffeb3b, #ffc107);
+    }
+}
+
+/* Drop/Gravity Animation */
+.apple-cell.dropping {
+    animation: dropAnimation 0.3s ease-in forwards;
+}
+
+@keyframes dropAnimation {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* New Apple Spawn Animation */
+.apple-cell.spawning {
+    animation: spawnAnimation 0.35s ease-out forwards !important;
+    transition: none !important;
+    visibility: visible !important;
+}
+
+@keyframes spawnAnimation {
+    0% {
+        transform: scale(0) translateY(-20px);
+        opacity: 0;
+        visibility: visible;
+    }
+    60% {
+        transform: scale(1.15) translateY(0);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(0.95) translateY(0);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Selection Box */
+.selection-box {
+    position: absolute;
+    border: 3px solid rgba(59, 130, 246, 0.8);
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 10;
+    transition: none;
+}
+
+.selection-box.hidden {
+    display: none;
+}
+
+/* Valid Selection (sum = 10) */
+.selection-box.valid {
+    border-color: rgba(34, 197, 94, 0.9);
+    background: rgba(34, 197, 94, 0.2);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+/* Invalid Selection (sum != 10) */
+.selection-box.invalid {
+    border-color: rgba(239, 68, 68, 0.8);
+    background: rgba(239, 68, 68, 0.15);
+}
+
+/* Timer Bar */
+.timer-bar-wrapper {
+    position: relative;
+}
+
+.timer-bar {
+    transition: height 1s linear;
+}
+
+.timer-bar.low {
+    background: linear-gradient(to top, #ef4444, #f97316) !important;
+    animation: timerPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Game Over Modal Animation */
+.animate-modal {
+    animation: modalAppear 0.3s ease-out forwards;
+}
+
+@keyframes modalAppear {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Score Pop Animation */
+.score-pop {
+    animation: scorePop 0.3s ease-out;
+}
+
+@keyframes scorePop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Floating Score Indicator */
+.floating-score {
+    position: absolute;
+    font-weight: bold;
+    font-size: 24px;
+    color: #22c55e;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 20;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(-10px) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Sum Display During Selection */
+.sum-display {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 15;
+}
+
+.sum-display.valid {
+    background: rgba(34, 197, 94, 0.9);
+}
+
+.sum-display.invalid {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-grid {
+        gap: 2px;
+    }
+
+    .apple-cell {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+
+    .apple-cell::before {
+        width: 6px;
+        height: 4px;
+        top: 2px;
+        left: 6px;
+    }
+
+    .timer-container {
+        flex-direction: row !important;
+        width: 100%;
+        padding: 12px 20px !important;
+    }
+
+    .timer-bar-wrapper {
+        width: 200px !important;
+        height: 20px !important;
+    }
+
+    .timer-bar {
+        width: 100% !important;
+        height: 100% !important;
+        left: 0;
+        bottom: auto;
+        background: linear-gradient(to right, #ef4444, #f97316, #22c55e) !important;
+    }
+
+    .game-wrapper {
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .apple-cell {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .apple-cell::before {
+        width: 4px;
+        height: 3px;
+        top: 1px;
+        left: 4px;
+    }
+
+    .game-grid {
+        gap: 1px;
+    }
+}
+
+/* Prevent text selection during drag */
+.game-grid-container {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

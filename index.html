@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사과 게임 - Apple Game</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="사과 게임을 무료로 즐기세요! 숫자의 합이 10이 되도록 사과를 선택하는 중독성 있는 퍼즐 게임입니다.">
+    <meta name="keywords" content="사과 게임, apple game, 숫자 퍼즐, 무료 게임, 온라인 게임">
+    <meta name="author" content="Apple Game">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="사과 게임 - Apple Game">
+    <meta property="og:description" content="숫자의 합이 10이 되도록 사과를 선택하세요! 중독성 있는 무료 퍼즐 게임">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍎</text></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            red: '#e53935',
+                            dark: '#c62828',
+                            light: '#ef5350'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-rose-400 via-red-500 to-pink-500 flex items-center justify-center p-4">
+    <div class="game-wrapper flex flex-col lg:flex-row items-center gap-6">
+        <!-- Main Game Container -->
+        <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-6 max-w-fit">
+            <!-- Header -->
+            <header class="text-center mb-4">
+                <h1 class="text-3xl md:text-4xl font-bold text-red-600 mb-1">🍎 사과 게임</h1>
+                <p class="text-gray-600 text-sm md:text-base">숫자의 합이 10이 되도록 드래그하세요!</p>
+            </header>
+
+            <!-- Score Display -->
+            <div class="flex justify-center gap-4 mb-4">
+                <div class="bg-gradient-to-r from-red-500 to-rose-500 px-6 py-3 rounded-2xl shadow-lg">
+                    <div class="text-white/80 text-xs font-semibold uppercase tracking-wider">점수</div>
+                    <div id="score" class="text-white text-2xl font-bold">0</div>
+                </div>
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3 rounded-2xl shadow-lg">
+                    <div class="text-white/80 text-xs font-semibold uppercase tracking-wider">최고 점수</div>
+                    <div id="highScore" class="text-white text-2xl font-bold">0</div>
+                </div>
+            </div>
+
+            <!-- Game Grid Container -->
+            <div class="relative">
+                <div id="gameContainer" class="game-grid-container relative bg-gradient-to-b from-amber-50 to-orange-50 rounded-2xl p-2 shadow-inner overflow-hidden select-none">
+                    <div id="gameGrid" class="game-grid"></div>
+                    <!-- Selection Box Overlay -->
+                    <div id="selectionBox" class="selection-box hidden"></div>
+                </div>
+            </div>
+
+            <!-- Game Buttons -->
+            <div class="mt-4 text-center flex justify-center gap-3 flex-wrap">
+                <button id="startBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95">
+                    게임 시작
+                </button>
+                <button id="resetBtn" class="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95 hidden">
+                    다시 시작
+                </button>
+                <button id="musicToggleBtn" class="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95">
+                    🔊 음악
+                </button>
+            </div>
+
+            <!-- Instructions -->
+            <div class="mt-4 text-center text-gray-500 text-sm">
+                <p>🖱️ 클릭하고 드래그하여 사과를 선택하세요</p>
+                <p>🎯 선택한 숫자의 합이 10이면 사과가 사라집니다!</p>
+            </div>
+        </div>
+
+        <!-- Timer Bar (Side) -->
+        <div class="timer-container bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 flex flex-col items-center">
+            <div class="text-gray-700 font-bold mb-2 text-sm uppercase tracking-wider">남은 시간</div>
+            <div class="timer-bar-wrapper relative w-8 h-64 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                <div id="timerBar" class="timer-bar absolute bottom-0 w-full bg-gradient-to-t from-red-500 via-orange-500 to-green-500 rounded-full transition-all duration-1000" style="height: 100%"></div>
+            </div>
+            <div id="timerText" class="mt-2 text-2xl font-bold text-gray-700">2:00</div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform scale-95 animate-modal">
+            <h2 class="text-4xl font-bold text-red-600 mb-4">게임 종료!</h2>
+            <div class="text-6xl mb-4">🍎</div>
+            <p class="text-gray-600 mb-2">최종 점수</p>
+            <p id="finalScore" class="text-5xl font-bold text-red-500 mb-6">0</p>
+            <button id="restartBtn" class="bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95">
+                다시 시작
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="3.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="game.js"></script>
+</body>
+</html>
