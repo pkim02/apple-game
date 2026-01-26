@@ -24,8 +24,7 @@ let mouseStartY = 0;
 // DOM Elements
 let gameGrid, selectionBox, scoreDisplay, highScoreDisplay;
 let timerBar, timerText, startBtn, resetBtn, restartBtn, gameOverModal, finalScoreDisplay;
-let gameContainer, bgMusic, musicToggleBtn;
-let musicEnabled = true;
+let gameContainer;
 
 // Initialize the game
 function init() {
@@ -42,13 +41,6 @@ function init() {
     restartBtn = document.getElementById('restartBtn');
     gameOverModal = document.getElementById('gameOverModal');
     finalScoreDisplay = document.getElementById('finalScore');
-    bgMusic = document.getElementById('bgMusic');
-    musicToggleBtn = document.getElementById('musicToggleBtn');
-
-    // Load music preference
-    musicEnabled = localStorage.getItem('appleMusicEnabled') !== 'false';
-    updateMusicButton();
-
     // Load high score
     highScore = parseInt(localStorage.getItem('appleGameHighScore') || '0');
     highScoreDisplay.textContent = highScore;
@@ -57,7 +49,6 @@ function init() {
     startBtn.addEventListener('click', startGame);
     resetBtn.addEventListener('click', restartGame);
     restartBtn.addEventListener('click', restartGame);
-    musicToggleBtn.addEventListener('click', toggleMusic);
 
     // Mouse events
     gameContainer.addEventListener('mousedown', handleMouseDown);
@@ -123,13 +114,7 @@ function startGame() {
     startBtn.style.display = 'none';
     resetBtn.classList.remove('hidden');
     gameOverModal.classList.add('hidden');
-    
-    // Start background music if enabled
-    bgMusic.currentTime = 0;
-    if (musicEnabled) {
-        bgMusic.play().catch(e => console.log('Audio play failed:', e));
-    }
-    
+
     initGrid();
     renderGrid();
     startTimer();
@@ -182,11 +167,7 @@ function endGame() {
         clearInterval(timerInterval);
         timerInterval = null;
     }
-    
-    // Stop background music
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-    
+
     // Update high score
     if (score > highScore) {
         highScore = score;
@@ -513,31 +494,6 @@ function renderGridWithAnimation() {
             cell.textContent = '';
         }
     });
-}
-
-// Music toggle functions
-function toggleMusic() {
-    musicEnabled = !musicEnabled;
-    localStorage.setItem('appleMusicEnabled', musicEnabled);
-    updateMusicButton();
-    
-    if (musicEnabled && gameStarted && !gameOver) {
-        bgMusic.play().catch(e => console.log('Audio play failed:', e));
-    } else {
-        bgMusic.pause();
-    }
-}
-
-function updateMusicButton() {
-    if (musicEnabled) {
-        musicToggleBtn.textContent = '🔊 음악';
-        musicToggleBtn.classList.remove('from-gray-400', 'to-gray-500');
-        musicToggleBtn.classList.add('from-purple-500', 'to-indigo-600');
-    } else {
-        musicToggleBtn.textContent = '🔇 음악';
-        musicToggleBtn.classList.remove('from-purple-500', 'to-indigo-600');
-        musicToggleBtn.classList.add('from-gray-400', 'to-gray-500');
-    }
 }
 
 // Initialize on page load
