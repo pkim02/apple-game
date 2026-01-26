@@ -3,22 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사과 게임 - Apple Game</title>
+    <title>사과 게임 공략 | 전략, 족보, 잘하는 법 - 무료 플레이</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="사과 게임을 무료로 즐기세요! 숫자의 합이 10이 되도록 사과를 선택하는 중독성 있는 퍼즐 게임입니다.">
-    <meta name="keywords" content="사과 게임, apple game, 숫자 퍼즐, 무료 게임, 온라인 게임">
+    <meta name="description" content="사과 게임 공략과 전략을 확인하고 무료로 플레이하세요! 숫자의 합이 10이 되도록 사과를 선택하는 중독성 있는 퍼즐 게임입니다. 고득점 팁과 족보 포함.">
+    <meta name="keywords" content="사과 게임, 사과게임 공략, 사과게임 전략, 사과게임 팁, 사과게임 족보, apple game, 숫자 퍼즐, 무료 게임, 온라인 게임, 사과게임 잘하는법">
     <meta name="author" content="Apple Game">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="사과 게임 - Apple Game">
-    <meta property="og:description" content="숫자의 합이 10이 되도록 사과를 선택하세요! 중독성 있는 무료 퍼즐 게임">
+    <meta property="og:title" content="사과 게임 - 공략, 전략, 족보 총정리 | Apple Game">
+    <meta property="og:description" content="사과게임 공략과 족보를 확인하고 무료로 플레이! 100점 넘는 전략과 잘하는 법을 알려드립니다.">
     <meta property="og:locale" content="ko_KR">
+    <meta property="og:url" content="https://applegame.kr/">
+    <meta property="og:site_name" content="사과 게임">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://applegame.kr/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍎</text></svg>">
+
+    <!-- Schema.org Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "사과 게임",
+        "alternateName": "Apple Game",
+        "description": "숫자의 합이 10이 되도록 사과를 선택하는 무료 퍼즐 게임",
+        "url": "https://applegame.kr/",
+        "applicationCategory": "Game",
+        "genre": "Puzzle",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "사과게임 잘하는 법",
+        "description": "사과게임에서 고득점을 달성하는 공략과 전략",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "중앙부터 시작",
+                "text": "모서리가 아닌 중앙에서 시작하여 사방으로 확장 가능하게 합니다."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "족보 암기",
+                "text": "합이 10이 되는 2개, 3개, 4개 조합을 미리 암기합니다."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "3개 이상 조합 우선",
+                "text": "2개 조합보다 3개 이상 조합을 우선 없애 점수를 빠르게 올립니다."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "사각형 드래그 활용",
+                "text": "직선이 아닌 ㅁ자 사각형 범위로 드래그하여 더 많은 조합을 잡습니다."
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "사과게임 최고 점수는 몇 점인가요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "이론상 최고 점수는 170점입니다. 모든 사과를 2분 안에 없애면 달성 가능합니다."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "사과게임 100점이 안 넘어가요. 어떻게 해야 하나요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "사각형 범위 드래그를 연습하세요. 직선 드래그만으로는 100점 돌파가 어렵습니다."
+                }
+            }
+        ]
+    }
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,7 +121,9 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-rose-400 via-red-500 to-pink-500 flex items-center justify-center p-4">
+<body class="min-h-screen bg-gradient-to-br from-rose-400 via-red-500 to-pink-500 p-4">
+    <!-- Game Section -->
+    <section class="flex items-center justify-center min-h-screen relative">
     <div class="game-wrapper flex flex-col lg:flex-row items-center gap-6">
         <!-- Main Game Container -->
         <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-6 max-w-fit">
@@ -99,6 +180,178 @@
             <div id="timerText" class="mt-2 text-2xl font-bold text-gray-700">2:00</div>
         </div>
     </div>
+        <!-- Scroll Down Indicator -->
+        <a href="#strategy" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/80 hover:text-white animate-bounce transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+            <span class="sr-only">공략 보기</span>
+        </a>
+    </section>
+
+    <!-- Strategy Section for SEO -->
+    <section id="strategy" class="max-w-4xl mx-auto py-16 px-4">
+        <article class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-red-600 mb-8 text-center">🍎 사과게임 공략 & 전략</h2>
+
+            <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                사과 게임은 2분 안에 숫자의 합이 10이 되는 사과들을 드래그하여 없애는 퍼즐 게임입니다.
+                사라진 사과 1개당 1점을 획득하며, 이론상 최고 점수는 170점입니다.
+                아래 공략과 전략을 익히면 고득점을 달성할 수 있습니다.
+            </p>
+
+            <div class="space-y-8">
+                <!-- 기본 족보 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">📋 사과게임 족보 (필수 암기)</h3>
+                    <p class="text-gray-600 mb-4">합이 10이 되는 조합을 미리 외워두면 게임 중 빠르게 찾을 수 있습니다.</p>
+                    <div class="bg-red-50 rounded-2xl p-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <h4 class="font-bold text-red-600 mb-2">2개 조합</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• 1 + 9</li>
+                                    <li>• 2 + 8</li>
+                                    <li>• 3 + 7</li>
+                                    <li>• 4 + 6</li>
+                                    <li>• 5 + 5</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-red-600 mb-2">3개 조합</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• 1 + 1 + 8</li>
+                                    <li>• 1 + 2 + 7</li>
+                                    <li>• 1 + 3 + 6</li>
+                                    <li>• 1 + 4 + 5</li>
+                                    <li>• 2 + 2 + 6</li>
+                                    <li>• 2 + 3 + 5</li>
+                                    <li>• 2 + 4 + 4</li>
+                                    <li>• 3 + 3 + 4</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-red-600 mb-2">4개 조합</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• 1 + 1 + 1 + 7</li>
+                                    <li>• 1 + 1 + 2 + 6</li>
+                                    <li>• 1 + 1 + 3 + 5</li>
+                                    <li>• 1 + 2 + 3 + 4</li>
+                                    <li>• 2 + 2 + 2 + 4</li>
+                                    <li>• 2 + 2 + 3 + 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 핵심 전략 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">🎯 사과게임 잘하는 법</h3>
+
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="font-bold text-gray-800 text-lg">1. 무조건 중앙부터 시작하기</h4>
+                            <p class="text-gray-600 mt-1">
+                                모서리에서 시작하면 확장 방향이 2방향뿐이고, 테두리는 3방향입니다.
+                                중앙에서 시작해야 사방으로 확장할 수 있어 더 많은 조합을 찾을 수 있습니다.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-orange-400 pl-4">
+                            <h4 class="font-bold text-gray-800 text-lg">2. 3개 이상 조합 우선 없애기</h4>
+                            <p class="text-gray-600 mt-1">
+                                1+9, 2+8 같은 2개 조합이 먼저 보이지만, 1+1+8, 1+2+7, 1+2+3+4 같은
+                                3개 이상 조합을 우선 없애세요. 한 번에 더 많은 사과를 없앨 수 있어 점수가 빠르게 올라갑니다.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-amber-400 pl-4">
+                            <h4 class="font-bold text-gray-800 text-lg">3. 사각형 범위 드래그 활용</h4>
+                            <p class="text-gray-600 mt-1">
+                                가로, 세로 직선으로만 드래그하면 100점 넘기기 어렵습니다.
+                                ㅁ자 모양의 사각형 범위로 드래그하면 더 많은 조합을 한 번에 잡을 수 있습니다.
+                                이 기술이 익숙해지면 평균 90~100점 이상 가능합니다.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-400 pl-4">
+                            <h4 class="font-bold text-gray-800 text-lg">4. 큰 숫자 먼저 처리하기</h4>
+                            <p class="text-gray-600 mt-1">
+                                7, 8, 9는 조합이 제한적이므로 먼저 처리하세요.
+                                9는 1하고만 짝이 되고, 8은 2 또는 1+1과만 짝이 됩니다.
+                                작은 숫자들은 조합이 다양해서 나중에 처리해도 됩니다.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="font-bold text-gray-800 text-lg">5. 불판(클리어 불가능한 판) 인정하기</h4>
+                            <p class="text-gray-600 mt-1">
+                                게임 시작 시 숫자가 랜덤 배치되어 아무리 잘해도 모든 사과를 없앨 수 없는 판이 존재합니다.
+                                체감상 약 20% 확률로 나타납니다. 9가 너무 많거나 조합이 안 맞으면 과감히 다시 시작하세요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 점수별 가이드 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">📊 점수별 실력 가이드</h3>
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl p-6">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-bold">~60점</span>
+                                <span class="text-gray-700">입문 단계: 기본 조합 연습 필요</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">60~80점</span>
+                                <span class="text-gray-700">초급 단계: 가로/세로 직선 드래그 익숙</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">80~100점</span>
+                                <span class="text-gray-700">중급 단계: 족보 암기 완료, 사각형 드래그 연습 중</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">100~130점</span>
+                                <span class="text-gray-700">상급 단계: 사각형 드래그 능숙, 패턴 인식 빠름</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">130점+</span>
+                                <span class="text-gray-700">고수 단계: 최적화된 플레이, 판 운에 따라 만점 가능</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">❓ 자주 묻는 질문</h3>
+                    <div class="space-y-4">
+                        <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-800">사과게임 최고 점수는 몇 점인가요?</summary>
+                            <p class="text-gray-600 mt-2">이론상 최고 점수는 170점입니다. 모든 사과를 2분 안에 없애면 달성 가능하지만, 판의 운이 따라야 합니다.</p>
+                        </details>
+                        <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-800">모바일과 PC 중 어디서 하는 게 좋나요?</summary>
+                            <p class="text-gray-600 mt-2">개인 취향에 따라 다르지만, PC에서 마우스로 플레이하면 더 정확한 드래그가 가능합니다. 모바일은 터치 반응이 빨라 속도전에 유리할 수 있습니다.</p>
+                        </details>
+                        <details class="bg-gray-50 rounded-xl p-4 cursor-pointer">
+                            <summary class="font-bold text-gray-800">100점이 안 넘어가요. 어떻게 해야 하나요?</summary>
+                            <p class="text-gray-600 mt-2">사각형 범위 드래그를 연습하세요. 직선 드래그만으로는 100점 돌파가 어렵습니다. 또한 3개 이상 조합을 우선 없애는 습관을 들이세요.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-12 text-center">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+                   class="inline-block bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105">
+                    🍎 지금 바로 플레이하기
+                </a>
+            </div>
+        </article>
+    </section>
 
     <!-- Game Over Modal -->
     <div id="gameOverModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
