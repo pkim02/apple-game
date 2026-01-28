@@ -13,6 +13,7 @@ let timeRemaining = GAME_DURATION;
 let gameStarted = false;
 let gameOver = false;
 let timerInterval = null;
+let infiniteMode = false;
 
 // Selection State
 let isSelecting = false;
@@ -23,7 +24,7 @@ let mouseStartY = 0;
 
 // DOM Elements
 let gameGrid, selectionBox, scoreDisplay, highScoreDisplay;
-let timerBar, timerText, startBtn, resetBtn, restartBtn, gameOverModal, finalScoreDisplay;
+let timerBar, timerText, startBtn, resetBtn, restartBtn, continueBtn, gameOverModal, finalScoreDisplay;
 let gameContainer;
 
 // Initialize the game
@@ -39,6 +40,7 @@ function init() {
     startBtn = document.getElementById('startBtn');
     resetBtn = document.getElementById('resetBtn');
     restartBtn = document.getElementById('restartBtn');
+    continueBtn = document.getElementById('continueBtn');
     gameOverModal = document.getElementById('gameOverModal');
     finalScoreDisplay = document.getElementById('finalScore');
     // Load high score
@@ -49,6 +51,7 @@ function init() {
     startBtn.addEventListener('click', startGame);
     resetBtn.addEventListener('click', restartGame);
     restartBtn.addEventListener('click', restartGame);
+    continueBtn.addEventListener('click', continueGame);
 
     // Mouse events
     gameContainer.addEventListener('mousedown', handleMouseDown);
@@ -107,6 +110,7 @@ function renderGrid() {
 function startGame() {
     gameStarted = true;
     gameOver = false;
+    infiniteMode = false;
     score = 0;
     timeRemaining = GAME_DURATION;
     
@@ -126,6 +130,17 @@ function restartGame() {
         clearInterval(timerInterval);
     }
     startGame();
+}
+
+// Continue playing in infinite mode
+function continueGame() {
+    infiniteMode = true;
+    gameStarted = true;
+    gameOver = false;
+    gameOverModal.classList.add('hidden');
+    timerText.textContent = '∞';
+    timerBar.style.height = '100%';
+    timerBar.classList.remove('low');
 }
 
 // Timer functions
